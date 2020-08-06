@@ -8,6 +8,8 @@ class ReviewParent extends React.Component {
     this.state = {
 
     };
+    // List of Reviews stored in Reviews List
+    // Review Metadata stored in Ratings Summary
   }
 
   render() {
