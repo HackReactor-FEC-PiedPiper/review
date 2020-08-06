@@ -12,13 +12,25 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        enforce: 'pre',
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          fix: true;
+        },
+      },
+      {
+        test: /\.jsx$/,
         include: SRC_DIR,
         loader: 'babel-loader',
         query: {
           presets: ['@babel/preset-react', '@babel/preset-env']
-        }
+        },
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   }
 };

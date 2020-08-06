@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Test from './components/Test.jsx'
+import ReviewParent from './components/ReviewParent.jsx'
+import 'bootstrap';
 
-ReactDOM.render(<Test />, document.getElementById('app'));
+ReactDOM.render(<ReviewParent />, document.getElementById('root'));
