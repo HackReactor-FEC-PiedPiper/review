@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewParent from '../src/components/ReviewParent';
+import ReviewList from '../src/components/ReviewList';
 
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -20,8 +21,8 @@ describe('Review Parent should render successfully', () => {
     expect(wrapper.find('.col-4').text()).toBe('Ratings Summary')
   });
 
-  test('Should contain a Reviews List section', () => {
-    expect(wrapper.find('.col-8').text()).toBe('Reviews List')
+  test('Should contain a <ReviewList /> component', () => {
+    expect(wrapper.contains(<ReviewList />)).toEqual(true);
   });
 
 });
