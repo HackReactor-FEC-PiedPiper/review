@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap';
+import ReviewList from './ReviewList';
 
 class ReviewParent extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class ReviewParent extends React.Component {
               Ratings Summary
             </div>
             <div className="col-8">
-              Reviews List
+              <ReviewList />
             </div>
           </div>
         </div>
