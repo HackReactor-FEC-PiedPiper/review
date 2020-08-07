@@ -19,7 +19,25 @@ class ReviewList extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('state at time of component update: ', this.state);
+    // console.log('state at time of component update: ', this.state);
+  }
+
+  grabTwoReviews() {
+    if (this.state.currentList.length === 0) {
+      console.log('inside conditional', this.state.currentList);
+      const firstTwo = this.state.reviewListData.slice(0, 2);
+      console.log('first two reviews', firstTwo);
+      this.setState({
+        currentList: firstTwo,
+      });
+    } else {
+      // grab current length n and offset next slice by n
+      const n = this.state.currentList.length - 1;
+      const nextTwo = this.state.reviewListData.slice(n, n + 2);
+      this.setState({
+        currentList: this.state.currentList.concat(nextTwo),
+      });
+    }
   }
 
   pullReviewData(productID = 1, sortValue = 'newest') {
@@ -37,6 +55,7 @@ class ReviewList extends React.Component {
         this.setState({
           reviewListData: results.data.results,
         });
+        this.grabTwoReviews();
       })
       .catch((err) => {
         console.log(err);
@@ -48,13 +67,14 @@ class ReviewList extends React.Component {
       <div className="container">
         <div className="row align-self-start">Total # Reviews, sort options</div>
         <div className="row align-self-center">
-          {this.state.reviewListData.map((review) => (
+          {this.state.currentList.map((review) => (
             <IndividualReview
               rating={review.rating}
               name={review.reviewer_name}
               date={review.date}
               title={review.summary}
               body={review.body}
+              key={review.review_id}
             />
           ))}
         </div>

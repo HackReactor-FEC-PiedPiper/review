@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewList from '../src/components/ReviewList';
+import IndividualReview from '../src/components/IndividualReview';
 
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
