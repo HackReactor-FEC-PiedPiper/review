@@ -1,24 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const IndividualReview = ({
   rating, name, date, title, body,
-}) => (
-  <div className="container individual-review">
-    <div className="row">
-      <div id="rating">
-        Star Rating
-        {' '}
-        {rating}
+}) => {
+  const timestamp = moment(date).format('MMMM D YYYY');
+  // console.log('current form of date', timestamp);
+  return (
+    <div className="container border-bottom border-dark m-2 no-gutters">
+      <div className="row justify-content-between no-gutters">
+        <div className="col no-gutters">
+          <p id="rating" className="h6 text-left">
+            Star Rating
+            {' '}
+            {rating}
+          </p>
+        </div>
+        <div className="col no-gutters">
+          <p id="name date" className="h6 text-muted text-right">
+            {name}
+            {', '}
+            {timestamp}
+          </p>
+        </div>
       </div>
-      <div id="name">{name}</div>
-      <div id="date">{date}</div>
+      <h5 id="title" className="row">{title}</h5>
+      <p id="body" className="row h6 font-weight-light">{body}</p>
+      <div>Placement for Helpful Component</div>
     </div>
-    <h4 id="title" className="row">{title}</h4>
-    <p id="body" className="row">{body}</p>
-    <div>Placement for Helpful Component</div>
-  </div>
-);
+  );
+};
 
 IndividualReview.propTypes = {
   rating: PropTypes.number.isRequired,

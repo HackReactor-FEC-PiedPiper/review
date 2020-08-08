@@ -24,4 +24,6 @@ describe('Review List should render each child component', () => {
   test('Should render Add a Review button', () => {
     expect(wrapper.find('.order-last')).toBeTruthy();
   })
+
+  //Missing checking for <IndividualReview /> components
 })
