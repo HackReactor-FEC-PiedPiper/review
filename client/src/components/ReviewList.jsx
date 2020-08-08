@@ -53,7 +53,7 @@ class ReviewList extends React.Component {
         this.setState({
           reviewListData: results.data.results,
         }, () => {
-          console.log('current product data grabbed', results.data);
+          // console.log('current product data grabbed', results.data);
           this.grabTwoReviews();
         });
       })
