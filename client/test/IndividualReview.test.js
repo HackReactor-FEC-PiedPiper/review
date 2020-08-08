@@ -17,7 +17,7 @@ describe('Individual Review should contain the proper elements', () => {
   })
 
   test('Should contain a rating', () => {
-    expect(wrapper.find('#rating').text()).toBe('Star Rating 5')
+    expect(wrapper.find('.Stars')).toBeTruthy()
   })
 
   test('Should contain a title', () => {
