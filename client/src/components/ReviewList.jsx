@@ -24,9 +24,7 @@ class ReviewList extends React.Component {
 
   grabTwoReviews() {
     if (this.state.currentList.length === 0) {
-      // console.log('inside conditional', this.state.currentList);
       const firstTwo = this.state.reviewListData.slice(0, 2);
-      // console.log('first two reviews', firstTwo);
       this.setState({
         currentList: firstTwo,
       });
@@ -51,7 +49,6 @@ class ReviewList extends React.Component {
       },
     })
       .then((results) => {
-        // console.log('Data sent to setState', results.data.results);
         this.setState({
           reviewListData: results.data.results,
         });
@@ -63,7 +60,6 @@ class ReviewList extends React.Component {
   }
 
   handleMoreReviewClick() {
-    // console.log('Clicked More Reviews!');
     this.grabTwoReviews();
   }
 

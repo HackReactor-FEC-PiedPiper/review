@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import './starRating.scss';
 
 const IndividualReview = ({
   rating, name, date, title, body,
@@ -10,11 +11,7 @@ const IndividualReview = ({
     <div className="container border-bottom border-dark m-2 no-gutters">
       <div className="row justify-content-between no-gutters">
         <div className="col no-gutters">
-          <p id="rating" className="h6 text-left">
-            Star Rating
-            {' '}
-            {rating}
-          </p>
+          <div className="Stars" style={{ '--rating': `${rating}` }} />
         </div>
         <div className="col no-gutters">
           <p id="namedate" className="h6 text-muted text-right">
