@@ -75,7 +75,7 @@ class ReviewList extends React.Component {
           {' '}
           Reviews, sorted by SORTOPTIONTHING
         </h5>
-        <div className="row align-self-center">
+        <div className="row align-self-center mh-25 overflow-auto">
           {this.state.currentList.map((review) => (
             <IndividualReview
               rating={review.rating}
@@ -90,18 +90,25 @@ class ReviewList extends React.Component {
         <div className="row align-self-center">
           {(this.state.currentList.length < this.state.reviewListData.length)
             ? (
-              <button
-                type="button"
-                className="col order-first btn btn-outline-secondary"
-                onClick={this.handleMoreReviewClick.bind(this)}
-              >
-                More Reviews
-              </button>
+              <div className="col">
+                <button
+                  type="button"
+                  className="order-first btn btn-outline-secondary mw-75"
+                  onClick={this.handleMoreReviewClick.bind(this)}
+                >
+                  More Reviews
+                </button>
+              </div>
             )
             : null}
-          <button type="button" className="col order-last btn btn-outline-secondary">
-            Add a ReviewList
-          </button>
+          <div className="col">
+            <button
+              type="button"
+              className="order-last btn btn-outline-secondary mw-75"
+            >
+              Add a ReviewList
+            </button>
+          </div>
         </div>
       </div>
     );

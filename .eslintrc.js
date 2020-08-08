@@ -20,6 +20,6 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/destructuring-assignment": ['never']
+        "react/destructuring-assignment": [0]
     }
 };
