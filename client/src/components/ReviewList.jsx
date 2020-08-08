@@ -68,7 +68,7 @@ class ReviewList extends React.Component {
 
   handleSortOptionClick(event) {
     // Grab the link
-    console.log('Grabbing event', typeof event.target.innerText);
+    // console.log('Grabbing event', typeof event.target.innerText);
     const sort = event.target.innerText;
     this.setState({
       sortValue: sort,
