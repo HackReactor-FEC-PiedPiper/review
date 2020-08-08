@@ -19,7 +19,7 @@ class ReviewList extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('state at time of component update: ', this.state);
+    // console.log('state at time of component update: ', this.state);
   }
 
   grabTwoReviews() {
