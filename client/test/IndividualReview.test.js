@@ -9,19 +9,15 @@ describe('Individual Review should contain the proper elements', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<IndividualReview rating={5} name={'TestName'} date={'randomdate'} title={'reviewTitle'} body={'reviewBody'} />)
+    wrapper = shallow(<IndividualReview rating={5} name={'TestName'} date={'Invalid date'} title={'reviewTitle'} body={'reviewBody'} />)
   });
 
-  test('Should contain a username', () => {
-    expect(wrapper.find('#name').text()).toBe('TestName')
+  test('Should contain a username and date', () => {
+    expect(wrapper.find('#namedate').text()).toBe('TestName, Invalid date')
   })
 
   test('Should contain a rating', () => {
     expect(wrapper.find('#rating').text()).toBe('Star Rating 5')
-  })
-
-  test('Should contain a date', () => {
-    expect(wrapper.find('#date').text()).toBe('randomdate')
   })
 
   test('Should contain a title', () => {

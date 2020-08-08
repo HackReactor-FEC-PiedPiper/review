@@ -14,7 +14,7 @@ describe('Review List should render each child component', () => {
   });
 
   test('Should render a total reviews', () => {
-    expect(wrapper.find(".align-self-start").text()).toBe('Total # Reviews, sort options')
+    expect(wrapper.find(".align-self-start").text()).toBe('0 Reviews, sorted by SORTOPTIONTHING')
   });
 
   test('Should render a More Reviews button', () => {

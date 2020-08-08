@@ -6,7 +6,6 @@ const IndividualReview = ({
   rating, name, date, title, body,
 }) => {
   const timestamp = moment(date).format('MMMM D YYYY');
-  // console.log('current form of date', timestamp);
   return (
     <div className="container border-bottom border-dark m-2 no-gutters">
       <div className="row justify-content-between no-gutters">
@@ -18,7 +17,7 @@ const IndividualReview = ({
           </p>
         </div>
         <div className="col no-gutters">
-          <p id="name date" className="h6 text-muted text-right">
+          <p id="namedate" className="h6 text-muted text-right">
             {name}
             {', '}
             {timestamp}
