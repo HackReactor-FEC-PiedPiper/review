@@ -10,6 +10,7 @@ class ReviewList extends React.Component {
     this.state = {
       reviewListData: [],
       currentList: [],
+      sortValue: 'newest',
     };
   }
 
@@ -38,7 +39,7 @@ class ReviewList extends React.Component {
     }
   }
 
-  pullReviewData(productID = 1, sortValue = 'newest') {
+  pullReviewData(productID = 1, sortValue = this.state.sortValue) {
     axios({
       method: 'get',
       url: `http://52.26.193.201:3000/reviews/${productID}/list`,
@@ -51,8 +52,10 @@ class ReviewList extends React.Component {
       .then((results) => {
         this.setState({
           reviewListData: results.data.results,
+        }, () => {
+          // console.log('current product data grabbed', results.data);
+          this.grabTwoReviews();
         });
-        this.grabTwoReviews();
       })
       .catch((err) => {
         console.log(err);
@@ -63,14 +66,45 @@ class ReviewList extends React.Component {
     this.grabTwoReviews();
   }
 
+  handleSortOptionClick(event) {
+    // Grab the link
+    // console.log('Grabbing event', typeof event.target.innerText);
+    const sort = event.target.innerText;
+    this.setState({
+      sortValue: sort,
+      currentList: [],
+    }, () => {
+      this.pullReviewData(1, sort);
+    });
+  }
+
   render() {
     return (
       <div className="container">
-        <h5 className="row align-self-start">
-          {this.state.reviewListData.length}
-          {' '}
-          Reviews, sorted by SORTOPTIONTHING
-        </h5>
+        <div className="row">
+          <div className="h5 my-auto">
+            {this.state.reviewListData.length}
+            {' '}
+            Reviews, sorted by
+          </div>
+          <div className="btn-group dropdown px-2">
+            <button
+              className="btn btn-outline-secondary btn-sm dropdown-toggle"
+              type="button"
+              id="dropdownMenu2"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {this.state.sortValue}
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button type="button" className="dropdown-item" onClick={this.handleSortOptionClick.bind(this)}>newest</button>
+              <button type="button" className="dropdown-item" onClick={this.handleSortOptionClick.bind(this)}>helpful</button>
+              <button type="button" className="dropdown-item" onClick={this.handleSortOptionClick.bind(this)}>relevant</button>
+            </div>
+          </div>
+        </div>
         <div className="row align-self-center mh-25 overflow-auto">
           {this.state.currentList.map((review) => (
             <IndividualReview

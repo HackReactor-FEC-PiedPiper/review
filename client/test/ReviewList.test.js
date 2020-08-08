@@ -13,8 +13,9 @@ describe('Review List should render each child component', () => {
     wrapper = shallow(<ReviewList />)
   });
 
+  // Checks whether something exists on the page or not
   test('Should render a total reviews', () => {
-    expect(wrapper.find(".align-self-start").text()).toBe('0 Reviews, sorted by SORTOPTIONTHING')
+    expect(wrapper.find(".h4")).toBeTruthy();
   });
 
   test('Should render a More Reviews button', () => {
@@ -25,5 +26,8 @@ describe('Review List should render each child component', () => {
     expect(wrapper.find('.order-last')).toBeTruthy();
   })
 
+  test('Should render a list of Individual Reviews', () => {
+    expect(wrapper.find('.overflow-auto')).toBeTruthy();
+  })
   //Missing checking for <IndividualReview /> components
 })
