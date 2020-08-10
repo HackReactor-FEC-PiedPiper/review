@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 import IndividualReview from './IndividualReview';
 
@@ -8,15 +7,15 @@ class ReviewList extends React.Component {
     super(props);
 
     this.state = {
-      reviewListData: [],
+      reviewListData: this.props.reviews,
       currentList: [],
-      sortValue: 'newest',
+      sortValue: this.props.sortValue,
     };
   }
 
   componentDidMount() {
     // FIND WAY TO GRAB CURRENT PRODUCT ID TO PASS
-    this.pullReviewData();
+    this.grabTwoReviews();
   }
 
   componentDidUpdate() {
@@ -39,29 +38,6 @@ class ReviewList extends React.Component {
     }
   }
 
-  pullReviewData(productID = 1, sortValue = this.state.sortValue) {
-    axios({
-      method: 'get',
-      url: `http://52.26.193.201:3000/reviews/${productID}/list`,
-      data: {
-        product_id: productID,
-        count: 20,
-        sort: sortValue,
-      },
-    })
-      .then((results) => {
-        this.setState({
-          reviewListData: results.data.results,
-        }, () => {
-          // console.log('current product data grabbed', results.data);
-          this.grabTwoReviews();
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   handleMoreReviewClick() {
     this.grabTwoReviews();
   }
@@ -74,7 +50,7 @@ class ReviewList extends React.Component {
       sortValue: sort,
       currentList: [],
     }, () => {
-      this.pullReviewData(1, sort);
+      this.props.apiRequest(5, sort);
     });
   }
 
