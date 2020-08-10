@@ -38,7 +38,8 @@ class ReviewParent extends React.Component {
           apiAccessed: true,
           stateSortValue: sortValue,
         }, () => {
-          console.log('apiReviews', this.state.apiReviews);
+          // console.log('pulledReviewData, Reviews:', this.state.apiReviews);
+          // console.log('pulledReviewData, sortValue:', this.state.stateSortValue);
         });
       })
       .catch((err) => {
