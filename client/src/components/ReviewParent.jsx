@@ -41,7 +41,7 @@ class ReviewParent extends React.Component {
           apiDataAccessed: true,
           stateSortValue: sortValue,
         }, () => {
-          // console.log('pulledReviewData, Reviews:', this.state.apiReviews);
+          console.log('pulledReviewData, Reviews:', this.state.apiReviews);
           // console.log('pulledReviewData, sortValue:', this.state.stateSortValue);
         });
       })
@@ -63,7 +63,7 @@ class ReviewParent extends React.Component {
           apiMeta: results.data,
           apiMetaAccessed: true,
         }, () => {
-          console.log('current meta data', this.state.apiMeta);
+          // console.log('current meta data', this.state.apiMeta);
         });
       })
       .catch((err) => {

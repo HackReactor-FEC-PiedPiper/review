@@ -10,7 +10,7 @@ class RatingSummary extends React.Component {
       // contains .characteristics .ratings .recommended
       apiMetaData: this.props.metaData,
       avgRating: null,
-      perRec: null,
+      percentRec: null,
     };
   }
 
@@ -47,9 +47,9 @@ class RatingSummary extends React.Component {
     // 0 = No 1 = Yes
     const percent = (recommended[1] / (recommended[1] + recommended[0])) * 100;
     this.setState({
-      perRec: percent.toFixed(0),
+      percentRec: percent.toFixed(0),
     }, () => {
-      // console.log('current perRec state', this.state.perRec);
+      // console.log('current percentRec state', this.state.percentRec);
     });
   }
 
@@ -68,7 +68,7 @@ class RatingSummary extends React.Component {
         </div>
         <div className="row">
           <div className="h6 font-weight-light">
-            {this.state.perRec}
+            {this.state.percentRec}
             % of reviews recommend this product
           </div>
         </div>
