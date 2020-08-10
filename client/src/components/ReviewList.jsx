@@ -10,6 +10,7 @@ class ReviewList extends React.Component {
       reviewListData: this.props.reviews,
       currentList: [],
       sortValue: this.props.sortValue,
+      currentProduct: this.props.currentProduct,
     };
   }
 
@@ -53,7 +54,7 @@ class ReviewList extends React.Component {
       sortValue: sort,
       currentList: [],
     }, () => {
-      this.props.apiRequest(5, sort);
+      this.props.apiRequest(this.state.currentProduct, sort);
     });
   }
 
