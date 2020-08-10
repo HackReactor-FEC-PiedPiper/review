@@ -63,7 +63,7 @@ class ReviewParent extends React.Component {
           apiMeta: results.data,
           apiMetaAccessed: true,
         }, () => {
-          console.log('current meta data', this.state.apiMeta);
+          // console.log('current meta data', this.state.apiMeta);
         });
       })
       .catch((err) => {
@@ -73,7 +73,7 @@ class ReviewParent extends React.Component {
 
   render() {
     return (
-      <div className="m-2">
+      <div className="m-5">
         <div id="title" className="h6 font-weight-light text-muted">
           RATINGS & REVIEWS
         </div>

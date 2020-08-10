@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import './starRating.scss';
+import Helpfulness from './Helpfulness';
 
 const IndividualReview = ({
-  rating, name, date, title, body,
+  rating, name, date, title, body, help, id,
 }) => {
   const timestamp = moment(date).format('MMMM D YYYY');
   return (
@@ -23,7 +24,9 @@ const IndividualReview = ({
       </div>
       <h5 id="title" className="row">{title}</h5>
       <p id="body" className="row h6 font-weight-light">{body}</p>
-      <div>Placement for Helpful Component</div>
+      <div>
+        <Helpfulness id={id} help={help} />
+      </div>
     </div>
   );
 };

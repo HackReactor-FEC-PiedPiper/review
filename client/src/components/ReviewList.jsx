@@ -93,6 +93,8 @@ class ReviewList extends React.Component {
               date={review.date}
               title={review.summary}
               body={review.body}
+              help={review.helpfulness}
+              id={review.review_id}
               key={review.review_id}
             />
           ))}
