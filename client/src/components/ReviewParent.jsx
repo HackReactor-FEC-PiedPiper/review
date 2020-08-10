@@ -41,7 +41,7 @@ class ReviewParent extends React.Component {
           apiDataAccessed: true,
           stateSortValue: sortValue,
         }, () => {
-          console.log('pulledReviewData, Reviews:', this.state.apiReviews);
+          // console.log('pulledReviewData, Reviews:', this.state.apiReviews);
           // console.log('pulledReviewData, sortValue:', this.state.stateSortValue);
         });
       })
@@ -73,7 +73,7 @@ class ReviewParent extends React.Component {
 
   render() {
     return (
-      <div className="m-2">
+      <div className="m-5">
         <div id="title" className="h6 font-weight-light text-muted">
           RATINGS & REVIEWS
         </div>
