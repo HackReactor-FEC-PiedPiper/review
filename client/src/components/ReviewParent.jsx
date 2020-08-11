@@ -77,7 +77,7 @@ class ReviewParent extends React.Component {
     this.setState({
       characteristics: Object.entries(object),
     }, () => {
-      console.log(this.state.characteristics);
+      // console.log(this.state.characteristics);
     });
   }
 

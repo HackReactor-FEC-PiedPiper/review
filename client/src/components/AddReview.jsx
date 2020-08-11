@@ -206,7 +206,7 @@ class AddReview extends React.Component {
                     <div className="col-4">
                       <div className="row align-self-start">
                         <div className="col">
-                          {type[0]}
+                          <small>{type[0]}</small>
                         </div>
                       </div>
                       <div className="row align-self-end">
