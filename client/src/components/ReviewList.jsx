@@ -134,7 +134,7 @@ class ReviewList extends React.Component {
                     </button>
                   </div>
                   <div className="modal-body">
-                    <AddReview />
+                    <AddReview characteristics={this.props.metaData} />
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-outline-secondary" data-dismiss="modal">Close</button>

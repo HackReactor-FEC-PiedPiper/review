@@ -15,6 +15,7 @@ class ReviewParent extends React.Component {
       stateSortValue: 'newest',
       apiReviews: [],
       apiMeta: {},
+      characteristics: [],
     };
     // List of Reviews stored HERE
     // Review Metadata stored HERE
@@ -64,11 +65,20 @@ class ReviewParent extends React.Component {
           apiMetaAccessed: true,
         }, () => {
           // console.log('current meta data', this.state.apiMeta);
+          this.prepCharacteristics(this.state.apiMeta.characteristics);
         });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  prepCharacteristics(object) {
+    this.setState({
+      characteristics: Object.entries(object),
+    }, () => {
+      console.log(this.state.characteristics);
+    });
   }
 
   render() {
@@ -92,6 +102,7 @@ class ReviewParent extends React.Component {
                     apiRequest={this.pullReviewData.bind(this)}
                     sortValue={this.state.stateSortValue}
                     currentProduct={this.state.currentProduct}
+                    metaData={this.state.characteristics}
                   />
                 )
                 : null}
