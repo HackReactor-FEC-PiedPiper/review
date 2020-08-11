@@ -32,7 +32,9 @@ class Helpfulness extends React.Component {
       <div className="container">
         <div className="row">
           <div className="h6 my-auto font-weight-light text-muted">
-            Helpful?
+            <small>
+              Helpful?
+            </small>
           </div>
           <button
             type="button"
@@ -41,12 +43,16 @@ class Helpfulness extends React.Component {
             data-toggle="button"
             aria-pressed="false"
           >
-            <u>
-              Yes
-            </u>
+            <small>
+              <u>
+                Yes
+              </u>
+            </small>
           </button>
           <div className="h6 my-auto font-weight-light text-muted">
-            {`(${this.props.help})`}
+            <small>
+              {`(${this.props.help})`}
+            </small>
           </div>
         </div>
       </div>
