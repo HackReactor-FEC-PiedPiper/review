@@ -11,7 +11,7 @@ class ReviewParent extends React.Component {
     this.state = {
       apiDataAccessed: false,
       apiMetaAccessed: false,
-      currentProduct: 5,
+      currentProduct: 1,
       stateSortValue: 'newest',
       apiReviews: [],
       apiMeta: {},
@@ -44,7 +44,7 @@ class ReviewParent extends React.Component {
           apiDataAccessed: true,
           stateSortValue: sortValue,
         }, () => {
-          // console.log('pulledReviewData, Reviews:', this.state.apiReviews);
+          console.log('pulledReviewData, Reviews:', this.state.apiReviews);
           // console.log('pulledReviewData, sortValue:', this.state.stateSortValue);
           // console.log('pulledReviewData, dataccess value', this.state.apiDataAccessed);
           // console.log('review count check', results.data);

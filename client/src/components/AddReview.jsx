@@ -27,6 +27,7 @@ class AddReview extends React.Component {
       formValidated: false,
       renderAlert: false,
       formPreviouslySubmitted: false,
+      charObj: null,
     };
   }
 
@@ -92,7 +93,7 @@ class AddReview extends React.Component {
     this.setState({
       formSizeRating: Number(event.target.value),
     }, () => {
-      // console.log('Current Value from Form Size Rating: ', this.state.formSizeRating);
+      console.log('Current Value from Form Size Rating: ', this.state.formSizeRating);
     });
   }
 
@@ -140,16 +141,16 @@ class AddReview extends React.Component {
   formValidationCheck() {
     // Check Name
     if (this.state.formNameInput.length > 0 && this.state.formNameInput.length < 60) {
-      console.log('passed name check');
+      // console.log('passed name check');
       // Check Email
       if (this.state.formEmailInput.length > 0 && this.state.formEmailInput.length < 60) {
-        console.log('passed email check');
+        // console.log('passed email check');
         // Check Star Rating
         if (typeof this.state.formStarRating === 'number') {
-          console.log('passed rating check');
+          // console.log('passed rating check');
           // Check Recommend
           if (typeof this.state.formRecommended === 'boolean') {
-            console.log('passed recommended check');
+            // console.log('passed recommended check');
             // Check Characteristics
             const characteristicsChecked = [];
             let characteristicsCount = 0;
@@ -165,25 +166,35 @@ class AddReview extends React.Component {
                 // GET ID AND SETSTATE HERE
                 this.setState({
                   [currentCharIDKey]: type[1].id,
+                }, () => {
+                  // console.log('after dynamic state set', [currentCharIDKey]);
                 });
               }
             });
             if (characteristicsChecked.length === characteristicsCount) {
-              console.log('passed characteristics check');
+              // console.log('passed characteristics check');
               // Check Summary
               if (this.state.formSummaryInput.length > 0 && this.state.formSummaryInput.length < 60) {
-                console.log('passed summary check');
+                // console.log('passed summary check');
                 // Check Body
                 if (this.state.formBodyInput.length > 50 && this.state.formBodyInput.length < 1000) {
-                  console.log('passed body check. passed all checks');
+                  // console.log('passed body check. passed all checks');
                   this.setState({
                     // formValidated: true,
                     renderAlert: false,
                   }, () => {
                     // console.log('Form successfully validated', this.state.formValidated);
-                    // console.log('Form successfully validated renderalert (should be false)', this.state.renderAlert);
+                    console.log('Form successfully validated renderalert (should be false)', this.state.renderAlert);
+
+                    // Create Char obj
+                    this.createCharacteristicObject();
                   });
-                  return true;
+                  if (this.state.formPreviouslySubmitted === false) {
+                    return true;
+                  }
+                  if (this.state.formPreviouslySubmitted) {
+                    console.log('already submitted', this.state.formPreviouslySubmitted);
+                  }
                 }
               }
             }
@@ -213,43 +224,48 @@ class AddReview extends React.Component {
     if (typeof this.state.formFitRating === 'number') {
       characteristicsObject[this.state.formFitID] = this.state.formFitRating;
     }
-    return characteristicsObject;
+    this.setState({
+      charObj: characteristicsObject,
+    }, () => {
+      console.log('confirming charobj creation', this.state.charObj);
+    });
   }
 
   handleFormSubmit(event) {
+    event.preventDefault();
     if (this.formValidationCheck()) {
-      if (this.state.formPreviouslySubmitted === false) {
-        // Create Characteristics Object
-        const charObj = this.createCharacteristicObject();
+      // Create Characteristics Object
+      setTimeout(() => {
+        const dataObj = {
+          rating: this.state.formStarRating,
+          summary: this.state.formSummaryInput,
+          body: this.state.formBodyInput,
+          recommend: this.state.formRecommended,
+          name: this.state.formNameInput,
+          email: this.state.formEmailInput,
+          characteristics: this.state.charObj,
+        };
+        console.log('After creation of data object', dataObj);
         // Submit the form
-        event.preventDefault();
+        // axios.post(`http://52.26.193.201:3000/reviews/${this.props.id}`, dataObj)
         axios({
           method: 'post',
-          url: `http://52.26.193.201:3000/reviews/${Number(this.props.id)}`,
-          product_id: Number(this.props.id),
-          data: {
-            rating: this.state.formStarRating,
-            summary: this.state.formSummaryInput,
-            body: this.state.formBodyInput,
-            recommend: this.state.formRecommended,
-            name: this.state.formNameInput,
-            email: this.state.formEmailInput,
-            photos: [],
-            characteristics: charObj,
-          },
+          url: `http://52.26.193.201:3000/reviews/${this.props.id}`,
+          product_id: this.props.id,
+          data: dataObj,
         })
           .then((result) => {
             console.log('axios .then result', result);
           })
           .catch((err) => {
-            console.log(err);
+            console.error(err);
           });
         this.setState({
           formPreviouslySubmitted: true,
         }, () => {
           console.log('logged form submission (should be true)', this.state.formPreviouslySubmitted);
         });
-      }
+      }, 1000);
     } else {
       // render alert
       this.setState({

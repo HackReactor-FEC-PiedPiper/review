@@ -34,9 +34,11 @@ class ReviewList extends React.Component {
   }
 
   setReviewListData() {
-    this.setState({
-      reviewListData: this.props.reviews,
-    });
+    if (this.props.reviews.length > 0) {
+      this.setState({
+        reviewListData: this.props.reviews,
+      });
+    }
   }
 
   grabTwoReviews() {
