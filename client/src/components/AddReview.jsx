@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -8,40 +9,50 @@ class AddReview extends React.Component {
       formStarRating: null,
       formRecommended: null,
       formSizeRating: null,
+      formSizeID: null,
       formWidthRating: null,
+      formWidthID: null,
       formComfortRating: null,
+      formComfortID: null,
       formQualityRating: null,
+      formQualityID: null,
       formLengthRating: null,
+      formLengthID: null,
       formFitRating: null,
+      formFitID: null,
       formNameInput: '',
       formEmailInput: '',
       formSummaryInput: '',
       formBodyInput: '',
+      formValidated: false,
+      renderAlert: false,
+      formPreviouslySubmitted: false,
     };
   }
 
-  // rating	          int	    Integer (1-5) indicating the review rating
-  // recommend	      bool	  Value indicating if the reviewer recommends the product
-  // name	            text	  Username for question asker
-  // email	          text	  Email address for question asker
-  // summary	        text	  Summary text of the review
-  // body	            text	  Continued or full text of the review
-  // photos	          [text]	Array of text urls that link to images to be shown
-  // characteristics	object	Object of keys representing characteristic_id and values representing the review value for that characteristic. { "14": 5, "15": 5 //...} (must send at least an empty object)
-
+  /// ////////////////////////////////////////////////////////////////////
+  // Controlled Form Functions
   onStarRatingChange(event) {
     this.setState({
-      formStarRating: event.target.value,
+      formStarRating: Number(event.target.value),
     }, () => {
-      console.log('Current Selection from Star Rating: ', this.state.formStarRating);
+      // console.log('Current Selection from Star Rating: ', this.state.formStarRating);
+      // console.log('Current Selection from Star Rating: ', typeof this.state.formStarRating);
     });
   }
 
   onRecommendedChange(event) {
+    let value = '';
+    if (event.target.value === 'true') {
+      value = true;
+    } else {
+      value = false;
+    }
     this.setState({
-      formRecommended: event.target.value,
+      formRecommended: value,
     }, () => {
-      console.log('Current Selection from Recommended: ', this.state.formRecommended);
+      // console.log('Current Selection from Recommended: ', this.state.formRecommended);
+      // console.log('Current Selection from Recommended: ', typeof this.state.formRecommended);
     });
   }
 
@@ -49,7 +60,7 @@ class AddReview extends React.Component {
     this.setState({
       formNameInput: event.target.value,
     }, () => {
-      console.log('Current Value from Form Name Input: ', this.state.formNameInput);
+      // console.log('Current Value from Form Name Input: ', this.state.formNameInput);
     });
   }
 
@@ -57,7 +68,7 @@ class AddReview extends React.Component {
     this.setState({
       formEmailInput: event.target.value,
     }, () => {
-      console.log('Current Value from Form Email Input: ', this.state.formEmailInput);
+      // console.log('Current Value from Form Email Input: ', this.state.formEmailInput);
     });
   }
 
@@ -65,7 +76,7 @@ class AddReview extends React.Component {
     this.setState({
       formSummaryInput: event.target.value,
     }, () => {
-      console.log('Current Value from Form Summary Input: ', this.state.formSummaryInput);
+      // console.log('Current Value from Form Summary Input: ', this.state.formSummaryInput);
     });
   }
 
@@ -73,61 +84,183 @@ class AddReview extends React.Component {
     this.setState({
       formBodyInput: event.target.value,
     }, () => {
-      console.log('Current Value from Form Body Input: ', this.state.formBodyInput);
+      // console.log('Current Value from Form Body Input: ', this.state.formBodyInput);
     });
   }
 
   onFormSizeChange(event) {
     this.setState({
-      formSizeRating: event.target.value,
+      formSizeRating: Number(event.target.value),
     }, () => {
-      console.log('Current Value from Form Size Rating: ', this.state.formSizeRating);
+      // console.log('Current Value from Form Size Rating: ', this.state.formSizeRating);
     });
   }
 
   onFormWidthChange(event) {
     this.setState({
-      formWidthRating: event.target.value,
+      formWidthRating: Number(event.target.value),
     }, () => {
-      console.log('Current Value from Form Width Rating: ', this.state.formWidthRating);
+      // console.log('Current Value from Form Width Rating: ', this.state.formWidthRating);
     });
   }
 
   onFormComfortChange(event) {
     this.setState({
-      formComfortRating: event.target.value,
+      formComfortRating: Number(event.target.value),
     }, () => {
-      console.log('Current Value from Form Comfort Rating: ', this.state.formComfortRating);
+      // console.log('Current Value from Form Comfort Rating: ', this.state.formComfortRating);
     });
   }
 
   onFormQualityChange(event) {
     this.setState({
-      formQualityRating: event.target.value,
+      formQualityRating: Number(event.target.value),
     }, () => {
-      console.log('Current Value from Form Quality Rating: ', this.state.formQualityRating);
+      // console.log('Current Value from Form Quality Rating: ', this.state.formQualityRating);
     });
   }
 
   onFormLengthChange(event) {
     this.setState({
-      formLengthRating: event.target.value,
+      formLengthRating: Number(event.target.value),
     }, () => {
-      console.log('Current Value from Form Length Rating: ', this.state.formLengthRating);
+      // console.log('Current Value from Form Length Rating: ', this.state.formLengthRating);
     });
   }
 
   onFormFitChange(event) {
     this.setState({
-      formFitRating: event.target.value,
+      formFitRating: Number(event.target.value),
     }, () => {
-      console.log('Current Value from Form Fit Rating: ', this.state.formFitRating);
+      // console.log('Current Value from Form Fit Rating: ', this.state.formFitRating);
     });
   }
+  /// ////////////////////////////////////////////////////////////////////
 
+  formValidationCheck() {
+    // Check Name
+    if (this.state.formNameInput.length > 0 && this.state.formNameInput.length < 60) {
+      console.log('passed name check');
+      // Check Email
+      if (this.state.formEmailInput.length > 0 && this.state.formEmailInput.length < 60) {
+        console.log('passed email check');
+        // Check Star Rating
+        if (typeof this.state.formStarRating === 'number') {
+          console.log('passed rating check');
+          // Check Recommend
+          if (typeof this.state.formRecommended === 'boolean') {
+            console.log('passed recommended check');
+            // Check Characteristics
+            const characteristicsChecked = [];
+            let characteristicsCount = 0;
+            this.props.characteristics.map((type) => {
+              // Compare mapped props to what is filled out
+              characteristicsCount++;
+              const currentCharRatingKey = `form${type[0]}Rating`;
+              // console.log('current currentCharRatingKey', currentCharRatingKey);
+              // console.log('current currentCharRatingKey in state', this.state[currentCharRatingKey]);
+              if (typeof this.state[currentCharRatingKey] === 'number') {
+                characteristicsChecked.push(type[0]);
+                const currentCharIDKey = `form${type[0]}ID`;
+                // GET ID AND SETSTATE HERE
+                this.setState({
+                  [currentCharIDKey]: type[1].id,
+                });
+              }
+            });
+            if (characteristicsChecked.length === characteristicsCount) {
+              console.log('passed characteristics check');
+              // Check Summary
+              if (this.state.formSummaryInput.length > 0 && this.state.formSummaryInput.length < 60) {
+                console.log('passed summary check');
+                // Check Body
+                if (this.state.formBodyInput.length > 50 && this.state.formBodyInput.length < 1000) {
+                  console.log('passed body check. passed all checks');
+                  this.setState({
+                    // formValidated: true,
+                    renderAlert: false,
+                  }, () => {
+                    // console.log('Form successfully validated', this.state.formValidated);
+                    // console.log('Form successfully validated renderalert (should be false)', this.state.renderAlert);
+                  });
+                  return true;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createCharacteristicObject() {
+    const characteristicsObject = {};
+    if (typeof this.state.formSizeRating === 'number') {
+      characteristicsObject[this.state.formSizeID] = this.state.formSizeRating;
+    }
+    if (typeof this.state.formWidthRating === 'number') {
+      characteristicsObject[this.state.formWidthID] = this.state.formWidthRating;
+    }
+    if (typeof this.state.formComfortRating === 'number') {
+      characteristicsObject[this.state.formComfortID] = this.state.formComfortRating;
+    }
+    if (typeof this.state.formQualityRating === 'number') {
+      characteristicsObject[this.state.formQualityID] = this.state.formQualityRating;
+    }
+    if (typeof this.state.formLengthRating === 'number') {
+      characteristicsObject[this.state.formLengthID] = this.state.formLengthRating;
+    }
+    if (typeof this.state.formFitRating === 'number') {
+      characteristicsObject[this.state.formFitID] = this.state.formFitRating;
+    }
+    return characteristicsObject;
+  }
+
+  handleFormSubmit(event) {
+    if (this.formValidationCheck()) {
+      if (this.state.formPreviouslySubmitted === false) {
+        // Create Characteristics Object
+        const charObj = this.createCharacteristicObject();
+        // Submit the form
+        event.preventDefault();
+        axios({
+          method: 'post',
+          url: `http://52.26.193.201:3000/reviews/${Number(this.props.id)}`,
+          product_id: Number(this.props.id),
+          data: {
+            rating: this.state.formStarRating,
+            summary: this.state.formSummaryInput,
+            body: this.state.formBodyInput,
+            recommend: this.state.formRecommended,
+            name: this.state.formNameInput,
+            email: this.state.formEmailInput,
+            photos: [],
+            characteristics: charObj,
+          },
+        })
+          .then((result) => {
+            console.log('axios .then result', result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        this.setState({
+          formPreviouslySubmitted: true,
+        }, () => {
+          console.log('logged form submission (should be true)', this.state.formPreviouslySubmitted);
+        });
+      }
+    } else {
+      // render alert
+      this.setState({
+        renderAlert: true,
+      });
+      console.log('failed validation check');
+    }
+  }
+
+  /// ////////////////////////////////////////////////////////////////////
   render() {
-    const { characteristics } = this.state;
-
     const charChange = {
       Size: this.onFormSizeChange.bind(this),
       Width: this.onFormWidthChange.bind(this),
@@ -139,11 +272,20 @@ class AddReview extends React.Component {
 
     return (
       <div>
+        {this.state.renderAlert
+          ? (
+            <div className="alert alert-danger" role="alert">
+              Oops! One or more of the fields do not meet the requirements!
+              Make sure you have filled every field.
+            </div>
+          )
+          : null}
         <form>
           <div className="form-group row">
             <div className="col">
               {/* What is your nickname */}
               <input type="text" className="form-control" placeholder="Nickname" value={this.state.formNameInput} onChange={this.onFormNameChange.bind(this)} />
+              <small className="form-text text-muted">For privacy, do not use your full name or email</small>
             </div>
             <div className="col-8">
               {/* Your email */}
@@ -200,9 +342,9 @@ class AddReview extends React.Component {
             </div>
             <div className="row">
               {this.props.characteristics
-                ? this.props.characteristics.map((type) => {
-                  console.log('Inside forEach', type[0]);
-                  return (
+                ? this.props.characteristics.map((type) =>
+                  // console.log('Inside forEach', type[0]);
+                  (
                     <div className="col-4">
                       <div className="row align-self-start">
                         <div className="col">
@@ -236,24 +378,28 @@ class AddReview extends React.Component {
                         </div>
                       </div>
                     </div>
-                  );
-                })
+                  ))
                 : "Hasn't loaded"}
             </div>
           </div>
           {/* Review Summary input - text */}
           <div className="form-group row">
             <div className="col">
-              <input type="text" className="form-control" placeholder="Review Summary" value={this.state.formSummaryInput} onChange={this.onFormSummaryChange.bind(this)} />
+              <input type="text" className="form-control" placeholder="Summary: i.e. Best purchase ever!" value={this.state.formSummaryInput} onChange={this.onFormSummaryChange.bind(this)} />
             </div>
           </div>
           {/* Review Body - textarea */}
           <div className="form-group row">
             <div className="col">
-              <textarea className="form-control" rows="6" placeholder="Your Review" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
+              <textarea className="form-control" rows="6" placeholder="Why did you like the product or not?" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
             </div>
           </div>
         </form>
+        <div className="row">
+          <div className="col">
+            <button type="button" className="btn btn-outline-primary" onClick={this.handleFormSubmit.bind(this)}>Submit</button>
+          </div>
+        </div>
       </div>
     );
   }

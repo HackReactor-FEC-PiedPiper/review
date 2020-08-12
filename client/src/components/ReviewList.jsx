@@ -128,17 +128,16 @@ class ReviewList extends React.Component {
               <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title" id="staticBackdropLabel">Add a Review</h5>
+                    <h5 className="modal-title" id="staticBackdropLabel">Write Your Review</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div className="modal-body">
-                    <AddReview characteristics={this.props.metaData} />
+                    <AddReview id={this.state.currentProduct} characteristics={this.props.metaData} />
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-outline-primary">Submit</button>
                   </div>
                 </div>
               </div>
