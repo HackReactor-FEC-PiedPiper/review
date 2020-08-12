@@ -17,13 +17,17 @@ class ReviewList extends React.Component {
 
   componentDidMount() {
     // FIND WAY TO GRAB CURRENT PRODUCT ID TO PASS
-    this.grabTwoReviews();
+    if (this.state.reviewListData.length > 0) {
+      this.grabTwoReviews();
+    }
   }
 
   componentDidUpdate() {
     // console.log('state at time of ReviewList component update: ', this.state);
     if (this.state.currentList.length === 0) {
-      this.grabTwoReviews();
+      if (this.state.reviewListData.length > 0) {
+        this.grabTwoReviews();
+      }
     }
   }
 
@@ -49,7 +53,7 @@ class ReviewList extends React.Component {
 
   handleSortOptionClick(event) {
     // Grab the link
-    // console.log('Grabbing event', typeof event.target.innerText);
+    console.log('Grabbing event', typeof event.target.innerText);
     const sort = event.target.innerText;
     this.setState({
       sortValue: sort,
