@@ -8,7 +8,7 @@ class ReviewList extends React.Component {
     super(props);
 
     this.state = {
-      reviewListData: this.props.reviews,
+      reviewListData: [],
       currentList: [],
       sortValue: this.props.sortValue,
       currentProduct: this.props.currentProduct,
@@ -17,6 +17,7 @@ class ReviewList extends React.Component {
 
   componentDidMount() {
     // FIND WAY TO GRAB CURRENT PRODUCT ID TO PASS
+    this.setReviewListData();
     if (this.state.reviewListData.length > 0) {
       this.grabTwoReviews();
     }
@@ -25,10 +26,17 @@ class ReviewList extends React.Component {
   componentDidUpdate() {
     // console.log('state at time of ReviewList component update: ', this.state);
     if (this.state.currentList.length === 0) {
+      this.setReviewListData();
       if (this.state.reviewListData.length > 0) {
         this.grabTwoReviews();
       }
     }
+  }
+
+  setReviewListData() {
+    this.setState({
+      reviewListData: this.props.reviews,
+    });
   }
 
   grabTwoReviews() {
@@ -53,11 +61,12 @@ class ReviewList extends React.Component {
 
   handleSortOptionClick(event) {
     // Grab the link
-    console.log('Grabbing event', typeof event.target.innerText);
+    // console.log('Grabbing event', typeof event.target.innerText);
     const sort = event.target.innerText;
     this.setState({
       sortValue: sort,
       currentList: [],
+      reviewListData: this.props.reviews,
     }, () => {
       this.props.apiRequest(this.state.currentProduct, sort);
     });
