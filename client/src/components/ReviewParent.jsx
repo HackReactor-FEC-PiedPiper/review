@@ -11,10 +11,11 @@ class ReviewParent extends React.Component {
     this.state = {
       apiDataAccessed: false,
       apiMetaAccessed: false,
-      currentProduct: 5,
+      currentProduct: 1,
       stateSortValue: 'newest',
       apiReviews: [],
       apiMeta: {},
+      characteristics: [],
     };
     // List of Reviews stored HERE
     // Review Metadata stored HERE
@@ -26,11 +27,13 @@ class ReviewParent extends React.Component {
   }
 
   pullReviewData(productID = this.state.currentProduct, sortValue = this.state.stateSortValue) {
-    axios({
-      method: 'get',
-      url: `http://52.26.193.201:3000/reviews/${productID}/list`,
-      data: {
-        product_id: productID,
+    this.setState({
+      apiDataAccessed: false,
+    }, () => {
+      // console.log('data access reset', this.state.apiDataAccessed);
+    });
+    axios.get(`http://52.26.193.201:3000/reviews/${productID}/list`, {
+      params: {
         count: 20,
         sort: sortValue,
       },
@@ -41,8 +44,10 @@ class ReviewParent extends React.Component {
           apiDataAccessed: true,
           stateSortValue: sortValue,
         }, () => {
-          // console.log('pulledReviewData, Reviews:', this.state.apiReviews);
+          console.log('pulledReviewData, Reviews:', this.state.apiReviews);
           // console.log('pulledReviewData, sortValue:', this.state.stateSortValue);
+          // console.log('pulledReviewData, dataccess value', this.state.apiDataAccessed);
+          // console.log('review count check', results.data);
         });
       })
       .catch((err) => {
@@ -64,11 +69,20 @@ class ReviewParent extends React.Component {
           apiMetaAccessed: true,
         }, () => {
           // console.log('current meta data', this.state.apiMeta);
+          this.prepCharacteristics(this.state.apiMeta.characteristics);
         });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  prepCharacteristics(object) {
+    this.setState({
+      characteristics: Object.entries(object),
+    }, () => {
+      // console.log(this.state.characteristics);
+    });
   }
 
   render() {
@@ -92,6 +106,7 @@ class ReviewParent extends React.Component {
                     apiRequest={this.pullReviewData.bind(this)}
                     sortValue={this.state.stateSortValue}
                     currentProduct={this.state.currentProduct}
+                    metaData={this.state.characteristics}
                   />
                 )
                 : null}

@@ -37,7 +37,7 @@ const ProgressBars = (props) => {
           </u>
         </div>
         <div className="col my-auto">
-          <div className="progress" style={{ height: '5px' }}>
+          <div className="progress" style={{ height: '8px' }}>
             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: `${value5}%` }} aria-valuenow={value5} aria-valuemin="0" aria-valuemax={totalRatings} />
           </div>
         </div>
@@ -49,7 +49,7 @@ const ProgressBars = (props) => {
           </u>
         </div>
         <div className="col my-auto">
-          <div className="progress" style={{ height: '5px' }}>
+          <div className="progress" style={{ height: '8px' }}>
             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: `${value4}%` }} aria-valuenow={value4} aria-valuemin="0" aria-valuemax={totalRatings} />
           </div>
         </div>
@@ -61,7 +61,7 @@ const ProgressBars = (props) => {
           </u>
         </div>
         <div className="col my-auto">
-          <div className="progress" style={{ height: '5px' }}>
+          <div className="progress" style={{ height: '8px' }}>
             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: `${value3}%` }} aria-valuenow={value3} aria-valuemin="0" aria-valuemax={totalRatings} />
           </div>
         </div>
@@ -73,7 +73,7 @@ const ProgressBars = (props) => {
           </u>
         </div>
         <div className="col my-auto">
-          <div className="progress" style={{ height: '5px' }}>
+          <div className="progress" style={{ height: '8px' }}>
             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: `${value2}%` }} aria-valuenow={value2} aria-valuemin="0" aria-valuemax={totalRatings} />
           </div>
         </div>
@@ -85,7 +85,7 @@ const ProgressBars = (props) => {
           </u>
         </div>
         <div className="col my-auto">
-          <div className="progress" style={{ height: '5px' }}>
+          <div className="progress" style={{ height: '8px' }}>
             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: `${value1}%` }} aria-valuenow={value1} aria-valuemin="0" aria-valuemax={totalRatings} />
           </div>
         </div>
