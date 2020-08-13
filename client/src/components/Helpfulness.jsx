@@ -6,19 +6,37 @@ class Helpfulness extends React.Component {
     super(props);
 
     this.state = {
-      buttonToggle: false,
+      buttonHelpToggle: false,
+      buttonReportToggle: false,
     };
   }
 
   handleHelpfulClick() {
-    if (this.state.buttonToggle === false) {
+    if (this.state.buttonHelpToggle === false) {
       axios({
         method: 'put',
         url: `http://52.26.193.201:3000/reviews/helpful/${this.props.id}`,
       })
         .then((res) => {
           this.setState({
-            buttonToggle: true,
+            buttonHelpToggle: true,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  handleReportClick() {
+    if (this.state.buttonReportToggle === false) {
+      axios({
+        method: 'put',
+        url: `http://52.26.193.201:3000/reviews/report/${this.props.id}`,
+      })
+        .then((res) => {
+          this.setState({
+            buttonReportToggle: true,
           });
         })
         .catch((err) => {
@@ -54,6 +72,19 @@ class Helpfulness extends React.Component {
               {`(${this.props.help})`}
             </small>
           </div>
+          <button
+            type="button"
+            className="btn btn-outline-secondary btn-sm m-1 border-0"
+            onClick={this.handleReportClick.bind(this)}
+            data-toggle="button"
+            aria-pressed="false"
+          >
+            <small>
+              <u>
+                Report
+              </u>
+            </small>
+          </button>
         </div>
       </div>
     );
