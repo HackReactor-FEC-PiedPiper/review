@@ -369,7 +369,7 @@ class AddReview extends React.Component {
                       </div>
                       <div className="row align-self-end">
                         <div className="col">
-                          <div className="form-group" onChange={charChange[type[0]]}>
+                          <div className="form-group row justify-content-around" onChange={charChange[type[0]]}>
                             <div className="form-check form-check-inline">
                               <input className="form-check-input" type="radio" name={`${type[0]}RatingOption`} id={`${type[0]}RatingOption1`} value={1} />
                               <label className="form-check-label" htmlFor={`${type[0]}RatingOption1`}>1</label>
@@ -393,6 +393,53 @@ class AddReview extends React.Component {
                           </div>
                         </div>
                       </div>
+                      {type[0] === 'Size'
+                        ? (
+                          <div className="row">
+                            <small className="col font-weight-light text-muted">Too small</small>
+                            <small className="col font-weight-light text-muted text-center">Perfect</small>
+                            <small className="col font-weight-light text-muted text-right">Too big</small>
+                          </div>
+                        )
+                        : type[0] === 'Width'
+                          ? (
+                            <div className="row">
+                              <small className="col font-weight-light text-muted">Too narrow</small>
+                              <small className="col font-weight-light text-muted text-center">Perfect</small>
+                              <small className="col font-weight-light text-muted text-right">Too wide</small>
+                            </div>
+                          )
+                          : type[0] === 'Comfort'
+                            ? (
+                              <div className="row">
+                                <small className="col font-weight-light text-muted">Uncomfortable</small>
+                                <small className="col font-weight-light text-muted text-right">Perfect</small>
+                              </div>
+                            )
+                            : type[0] === 'Quality'
+                              ? (
+                                <div className="row">
+                                  <small className="col font-weight-light text-muted">Poor</small>
+                                  <small className="col font-weight-light text-muted text-right">Perfect</small>
+                                </div>
+                              )
+                              : type[0] === 'Length'
+                                ? (
+                                  <div className="row">
+                                    <small className="col font-weight-light text-muted">Too short</small>
+                                    <small className="col font-weight-light text-muted text-center">Perfect</small>
+                                    <small className="col font-weight-light text-muted text-right">Too long</small>
+                                  </div>
+                                )
+                                : type[0] === 'Fit'
+                                  ? (
+                                    <div className="row">
+                                      <small className="col font-weight-light text-muted">Too tight</small>
+                                      <small className="col font-weight-light text-muted text-center">Perfect</small>
+                                      <small className="col font-weight-light text-muted text-right">Too loose</small>
+                                    </div>
+                                  )
+                                  : null}
                     </div>
                   ))
                 : "Hasn't loaded"}
