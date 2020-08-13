@@ -1,6 +1,7 @@
 import React from 'react';
 import './starRating.scss';
 import ProgressBars from './ProgressBars';
+import ProductBreakdown from './ProductBreakdown';
 
 class RatingSummary extends React.Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class RatingSummary extends React.Component {
   }
 
   render() {
-    const { ratings } = this.state.apiMetaData;
+    const { ratings, characteristics } = this.state.apiMetaData;
     return (
       <div className="container">
         <div className="row">
@@ -67,16 +68,18 @@ class RatingSummary extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="h6 font-weight-light">
+          <div className="col h6 font-weight-light">
             {this.state.percentRec}
             % of reviews recommend this product
           </div>
         </div>
         <div className="row">
-          <ProgressBars data={ratings} />
+          <div className="col">
+            <ProgressBars data={ratings} />
+          </div>
         </div>
         <div className="row">
-          Product Breakdown
+          <ProductBreakdown data={Object.entries(characteristics)} />
         </div>
       </div>
     );
