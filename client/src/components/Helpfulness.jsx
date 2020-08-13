@@ -50,7 +50,7 @@ class Helpfulness extends React.Component {
       <div className="container">
         <div className="row">
           <div className="h6 my-auto font-weight-light text-muted">
-            <small>
+            <small id="helpful">
               Helpful?
             </small>
           </div>
@@ -62,13 +62,13 @@ class Helpfulness extends React.Component {
             aria-pressed="false"
           >
             <small>
-              <u>
+              <u id="yes">
                 Yes
               </u>
             </small>
           </button>
           <div className="h6 my-auto font-weight-light text-muted">
-            <small>
+            <small id="helpnumber">
               {`(${this.props.help})`}
             </small>
           </div>
@@ -80,7 +80,7 @@ class Helpfulness extends React.Component {
             aria-pressed="false"
           >
             <small>
-              <u>
+              <u id="report">
                 Report
               </u>
             </small>

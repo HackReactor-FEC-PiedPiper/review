@@ -32,7 +32,7 @@ const ProgressBars = (props) => {
     <div className="container">
       <div className="row my-3">
         <div className="h6 my-auto font-weight-light">
-          <u>
+          <u id="fivestars">
             5 stars
           </u>
         </div>
@@ -44,7 +44,7 @@ const ProgressBars = (props) => {
       </div>
       <div className="row my-3">
         <div className="h6 my-auto font-weight-light">
-          <u>
+          <u id="fourstars">
             4 stars
           </u>
         </div>
@@ -56,7 +56,7 @@ const ProgressBars = (props) => {
       </div>
       <div className="row my-3">
         <div className="h6 my-auto font-weight-light">
-          <u>
+          <u id="threestars">
             3 stars
           </u>
         </div>
@@ -68,7 +68,7 @@ const ProgressBars = (props) => {
       </div>
       <div className="row my-3">
         <div className="h6 my-auto font-weight-light">
-          <u>
+          <u id="twostars">
             2 stars
           </u>
         </div>
@@ -80,7 +80,7 @@ const ProgressBars = (props) => {
       </div>
       <div className="row my-3">
         <div className="h6 my-auto font-weight-light">
-          <u>
+          <u id="onestars">
             1 stars
           </u>
         </div>

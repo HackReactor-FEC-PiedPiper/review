@@ -12,6 +12,10 @@ describe('Individual Review should contain the proper elements', () => {
     wrapper = shallow(<IndividualReview rating={5} name={'TestName'} date={'Invalid date'} title={'reviewTitle'} body={'reviewBody'} />)
   });
 
+  test('Should render successfully', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
+
   test('Should contain a username and date', () => {
     expect(wrapper.find('#namedate').text()).toBe('TestName, Invalid date')
   })

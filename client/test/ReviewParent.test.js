@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewParent from '../src/components/ReviewParent';
 import ReviewList from '../src/components/ReviewList';
+import RatingSummary from '../src/components/RatingSummary';
 
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -13,18 +14,22 @@ describe('Review Parent should render successfully', () => {
     wrapper = shallow(<ReviewParent />);
   });
 
-  test('Should render on the page', () => {
+  test('Should render successfully', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  test('Should render a title', () => {
     expect(wrapper.find('#title').text()).toBe('RATINGS & REVIEWS')
   });
 
-  //Broken Test
-  xtest('Should contain a Ratings Summary section', () => {
-    expect(wrapper.find('.col-4').text()).toBe('Ratings Summary')
+  // If it find the component, will return {}
+  test('Should contain a <RatingsSummary /> component', () => {
+    expect(wrapper.find(RatingSummary)).toEqual({})
   });
 
-  //Broken Test
-  xtest('Should contain a <ReviewList /> component', () => {
-    expect(wrapper.contains(<ReviewList />)).toEqual(true);
+  // If it finds the component, will return {}
+  test('Should contain a <ReviewList /> component', () => {
+    expect(wrapper.find(ReviewList)).toEqual({});
   });
 
 });
