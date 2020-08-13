@@ -78,7 +78,7 @@ class ReviewList extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="h5 my-auto">
+          <div id="totalreviews" className="h5 my-auto">
             {this.state.reviewListData.length}
             {' '}
             Reviews, sorted by
@@ -115,7 +115,7 @@ class ReviewList extends React.Component {
             />
           ))}
         </div>
-        <div className="row align-self-center">
+        <div id="buttons" className="row align-self-center">
           {(this.state.currentList.length < this.state.reviewListData.length)
             ? (
               <div className="col">

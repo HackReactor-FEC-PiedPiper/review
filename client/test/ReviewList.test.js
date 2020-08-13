@@ -8,28 +8,122 @@ configure({ adapter: new Adapter() });
 
 // Currently broken due to this.state.reviewListData to be a props passed in
 
-xdescribe('Review List should render each child component', () => {
+describe('Review List should render each child component', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<ReviewList />)
+    wrapper = shallow(<ReviewList
+      reviews={{"results": [
+      {
+        "review_id": 5,
+        "rating": 3,
+        "summary": "I'm enjoying wearing these shades",
+        "recommend": 0,
+        "response": "",
+        "body": "Comfortable and practical.",
+        "date": "2019-04-14T00:00:00.000Z",
+        "reviewer_name": "shortandsweeet",
+        "helpfulness": 5,
+      },
+      {
+        "review_id": 3,
+        "rating": 4,
+        "summary": "I am liking these glasses",
+        "recommend": 0,
+        "response": "Glad you're enjoying the product!",
+        "body": "They are very dark. But that's good because I'm in very sunny spots",
+        "date": "2019-06-23T00:00:00.000Z",
+        "reviewer_name": "bigbrotherbenjamin",
+        "helpfulness": 5,
+        "photos": [],
+      }]}}
+      apiRequest={() => {}}
+      sortValue={'newest'}
+      currentProduct={5}
+      metaData={{"characteristics": {
+        "Size": {
+          "id": 14,
+          "value": "4.0000"
+        },
+        "Width": {
+          "id": 15,
+          "value": "3.5000"
+        },
+        "Comfort": {
+          "id": 16,
+          "value": "4.0000"
+        }}}}
+    />)
   });
 
-  // Checks whether something exists on the page or not
   test('Should render a total reviews', () => {
-    expect(wrapper.find(".h4")).toBeTruthy();
+    expect(wrapper.find("#totalreviews").text()).toBe('0 Reviews, sorted by');
   });
 
-  test('Should render a More Reviews button', () => {
-    expect(wrapper.find('.order-first')).toBeTruthy();
+  // If found, will return {}
+  test('Should have a buttons area', () => {
+    expect(wrapper.find('#buttons')).toEqual({});
   })
 
-  test('Should render Add a Review button', () => {
-    expect(wrapper.find('.order-last')).toBeTruthy();
-  })
-
-  test('Should render a list of Individual Reviews', () => {
+  test('Should have an area for Individual Reviews', () => {
     expect(wrapper.find('.overflow-auto')).toBeTruthy();
   })
-  //Missing checking for <IndividualReview /> components
+
+  // If found, will return {}
+  test('Should be able to render an Individual Review', () => {
+    expect(wrapper.find(IndividualReview)).toEqual({})
+  })
+})
+
+describe('Review List should render', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<ReviewList
+      reviews={{"results": [
+      {
+        "review_id": 5,
+        "rating": 3,
+        "summary": "I'm enjoying wearing these shades",
+        "recommend": 0,
+        "response": "",
+        "body": "Comfortable and practical.",
+        "date": "2019-04-14T00:00:00.000Z",
+        "reviewer_name": "shortandsweeet",
+        "helpfulness": 5,
+      },
+      {
+        "review_id": 3,
+        "rating": 4,
+        "summary": "I am liking these glasses",
+        "recommend": 0,
+        "response": "Glad you're enjoying the product!",
+        "body": "They are very dark. But that's good because I'm in very sunny spots",
+        "date": "2019-06-23T00:00:00.000Z",
+        "reviewer_name": "bigbrotherbenjamin",
+        "helpfulness": 5,
+        "photos": [],
+      }]}}
+      apiRequest={() => {}}
+      sortValue={'newest'}
+      currentProduct={5}
+      metaData={{"characteristics": {
+        "Size": {
+          "id": 14,
+          "value": "4.0000"
+        },
+        "Width": {
+          "id": 15,
+          "value": "3.5000"
+        },
+        "Comfort": {
+          "id": 16,
+          "value": "4.0000"
+        }}}}
+    />)
+  })
+
+  test('Should render successfully', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
 })

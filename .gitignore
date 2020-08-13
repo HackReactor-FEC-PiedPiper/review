@@ -1,4 +1,4 @@
 node_modules
 .DS_Store
 coverage
-_snapshots_
+__snapshots__

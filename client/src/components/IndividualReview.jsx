@@ -7,6 +7,7 @@ import Helpfulness from './Helpfulness';
 const IndividualReview = ({
   rating, name, date, title, body, help, id,
 }) => {
+  moment.suppressDeprecationWarnings = true;
   const timestamp = moment(date).format('MMMM D YYYY');
   return (
     <div className="container border-bottom border-dark m-2 no-gutters">

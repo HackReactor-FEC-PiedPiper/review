@@ -93,7 +93,7 @@ class AddReview extends React.Component {
     this.setState({
       formSizeRating: Number(event.target.value),
     }, () => {
-      console.log('Current Value from Form Size Rating: ', this.state.formSizeRating);
+      // console.log('Current Value from Form Size Rating: ', this.state.formSizeRating);
     });
   }
 
@@ -184,7 +184,7 @@ class AddReview extends React.Component {
                     renderAlert: false,
                   }, () => {
                     // console.log('Form successfully validated', this.state.formValidated);
-                    console.log('Form successfully validated renderalert (should be false)', this.state.renderAlert);
+                    // console.log('Form successfully validated renderalert (should be false)', this.state.renderAlert);
 
                     // Create Char obj
                     this.createCharacteristicObject();
@@ -193,7 +193,7 @@ class AddReview extends React.Component {
                     return true;
                   }
                   if (this.state.formPreviouslySubmitted) {
-                    console.log('already submitted', this.state.formPreviouslySubmitted);
+                    // console.log('already submitted', this.state.formPreviouslySubmitted);
                   }
                 }
               }
@@ -227,7 +227,7 @@ class AddReview extends React.Component {
     this.setState({
       charObj: characteristicsObject,
     }, () => {
-      console.log('confirming charobj creation', this.state.charObj);
+      // console.log('confirming charobj creation', this.state.charObj);
     });
   }
 
@@ -245,7 +245,7 @@ class AddReview extends React.Component {
           email: this.state.formEmailInput,
           characteristics: this.state.charObj,
         };
-        console.log('After creation of data object', dataObj);
+        // console.log('After creation of data object', dataObj);
         // Submit the form
         // axios.post(`http://52.26.193.201:3000/reviews/${this.props.id}`, dataObj)
         axios({
@@ -263,7 +263,7 @@ class AddReview extends React.Component {
         this.setState({
           formPreviouslySubmitted: true,
         }, () => {
-          console.log('logged form submission (should be true)', this.state.formPreviouslySubmitted);
+          // console.log('logged form submission (should be true)', this.state.formPreviouslySubmitted);
         });
       }, 1000);
     } else {
@@ -271,7 +271,7 @@ class AddReview extends React.Component {
       this.setState({
         renderAlert: true,
       });
-      console.log('failed validation check');
+      // console.log('failed validation check');
     }
   }
 
@@ -297,7 +297,7 @@ class AddReview extends React.Component {
           )
           : null}
         <form>
-          <div className="form-group row">
+          <div id="identification" className="form-group row">
             <div className="col">
               {/* What is your nickname */}
               <input type="text" className="form-control" placeholder="Nickname" value={this.state.formNameInput} onChange={this.onFormNameChange.bind(this)} />
@@ -350,7 +350,7 @@ class AddReview extends React.Component {
             </div>
           </div>
           {/* Characteristics */}
-          <div className="form-group">
+          <div id="Characteristics" className="form-group">
             <div className="row">
               <div className="col align-self-start">
                 Please Rate Each Characteristic:
@@ -399,13 +399,13 @@ class AddReview extends React.Component {
             </div>
           </div>
           {/* Review Summary input - text */}
-          <div className="form-group row">
+          <div id="Summary" className="form-group row">
             <div className="col">
               <input type="text" className="form-control" placeholder="Summary: i.e. Best purchase ever!" value={this.state.formSummaryInput} onChange={this.onFormSummaryChange.bind(this)} />
             </div>
           </div>
           {/* Review Body - textarea */}
-          <div className="form-group row">
+          <div id="Body" className="form-group row">
             <div className="col">
               <textarea className="form-control" rows="6" placeholder="Why did you like the product or not?" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
               <small>
