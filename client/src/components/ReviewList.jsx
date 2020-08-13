@@ -101,19 +101,21 @@ class ReviewList extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row align-self-center mh-25 overflow-auto">
-          {this.state.currentList.map((review) => (
-            <IndividualReview
-              rating={review.rating}
-              name={review.reviewer_name}
-              date={review.date}
-              title={review.summary}
-              body={review.body}
-              help={review.helpfulness}
-              id={review.review_id}
-              key={review.review_id}
-            />
-          ))}
+        <div className="row">
+          <div className="col">
+            {this.state.currentList.map((review) => (
+              <IndividualReview
+                rating={review.rating}
+                name={review.reviewer_name}
+                date={review.date}
+                title={review.summary}
+                body={review.body}
+                help={review.helpfulness}
+                id={review.review_id}
+                key={review.review_id}
+              />
+            ))}
+          </div>
         </div>
         <div className="row align-self-center">
           {(this.state.currentList.length < this.state.reviewListData.length)
