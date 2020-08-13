@@ -8,7 +8,7 @@ const IndividualReview = ({
   rating, name, date, title, body, help, id, response,
 }) => {
   moment.suppressDeprecationWarnings = true;
-  const timestamp = moment(date).format('MMMM D YYYY');
+  const timestamp = moment(date).format('MMMM D, YYYY');
   return (
     <div className="container border-bottom border-dark m-2 no-gutters">
       <div className="row justify-content-between no-gutters">
@@ -28,7 +28,7 @@ const IndividualReview = ({
         <p id="body" className="h6 font-weight-light">{body}</p>
       </div>
       <div>
-        {response !== 'null'
+        {response !== 'null' && response
           ? (
             <div className="col bg-light">
               <div className="h6">

@@ -13,9 +13,9 @@ const ProductBreakdown = (props) => (
               {category}
             </div>
             <div className="progress col-12" style={{ height: 8 }}>
-              <div className="progress-bar bg-light" role="progressbar" style={{ width: `${(number - 2.5)}%` }} aria-valuenow={`${(number - 2.5)}`} aria-valuemin="0" aria-valuemax="100" />
-              <div className="progress-bar bg-secondary" role="progressbar" style={{ width: '5%' }} aria-valuenow={5} aria-valuemin="0" aria-valuemax="100" />
-              <div className="progress-bar bg-light" role="progressbar" style={{ width: `${100 - (number - 2.5)}%` }} aria-valuenow={`${100 - (number - 2.5)}`} aria-valuemin="0" aria-valuemax="100" />
+              <div className="progress-bar bg-light" role="progressbar" style={{ width: `${(number - 2.5)}%` }} aria-valuenow={`${(number - 2.5)}`} aria-valuemin="1" aria-valuemax="100" />
+              <div className="progress-bar bg-secondary" role="progressbar" style={{ width: '5%' }} aria-valuenow={5} aria-valuemin="1" aria-valuemax="100" />
+              <div className="progress-bar bg-light" role="progressbar" style={{ width: `${100 - (number - 2.5)}%` }} aria-valuenow={`${100 - (number - 2.5)}`} aria-valuemin="1" aria-valuemax="100" />
             </div>
             <div className="col">
               {category === 'Size'
