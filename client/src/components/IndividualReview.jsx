@@ -5,7 +5,7 @@ import './starRating.scss';
 import Helpfulness from './Helpfulness';
 
 const IndividualReview = ({
-  rating, name, date, title, body, help, id,
+  rating, name, date, title, body, help, id, response,
 }) => {
   moment.suppressDeprecationWarnings = true;
   const timestamp = moment(date).format('MMMM D YYYY');
@@ -23,8 +23,24 @@ const IndividualReview = ({
           </p>
         </div>
       </div>
-      <h5 id="title" className="row">{title}</h5>
-      <p id="body" className="row h6 font-weight-light">{body}</p>
+      <div className="col">
+        <h5 id="title" className="">{title}</h5>
+        <p id="body" className="h6 font-weight-light">{body}</p>
+      </div>
+      <div>
+        {response !== 'null'
+          ? (
+            <div className="col bg-light">
+              <div className="h6">
+                Response:
+              </div>
+              <div className="h6 font-weight-light">
+                {response}
+              </div>
+            </div>
+          )
+          : null}
+      </div>
       <div>
         <Helpfulness id={id} help={help} />
       </div>
