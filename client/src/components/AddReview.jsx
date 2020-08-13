@@ -408,6 +408,11 @@ class AddReview extends React.Component {
           <div className="form-group row">
             <div className="col">
               <textarea className="form-control" rows="6" placeholder="Why did you like the product or not?" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
+              <small>
+                {this.state.formBodyInput.length < 50
+                  ? `(${50 - this.state.formBodyInput.length})`
+                  : 'Minimum reached'}
+              </small>
             </div>
           </div>
         </form>

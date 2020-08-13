@@ -11,7 +11,7 @@ class ReviewParent extends React.Component {
     this.state = {
       apiDataAccessed: false,
       apiMetaAccessed: false,
-      currentProduct: 5,
+      currentProduct: 1,
       stateSortValue: 'newest',
       apiReviews: [],
       apiMeta: {},
