@@ -461,7 +461,7 @@ class AddReview extends React.Component {
           {/* Review Body - textarea */}
           <div id="Body" className="form-group row">
             <div className="col">
-              <textarea className="form-control" rows="4s" placeholder="Why did you like the product or not?" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
+              <textarea className="form-control" rows="4" placeholder="Why did you like the product or not?" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
               <small>
                 {this.state.formBodyInput.length < 50
                   ? `(${50 - this.state.formBodyInput.length})`
