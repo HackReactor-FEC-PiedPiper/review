@@ -296,6 +296,13 @@ class AddReview extends React.Component {
             </div>
           )
           : null}
+        {this.state.formPreviouslySubmitted
+          ? (
+            <div className="alert alert-success" role="alert">
+              Review submitted!
+            </div>
+          )
+          : null}
         <form>
           <div id="identification" className="form-group row">
             <div className="col">

@@ -11,7 +11,7 @@ class ReviewParent extends React.Component {
     this.state = {
       apiDataAccessed: false,
       apiMetaAccessed: false,
-      currentProduct: 1,
+      currentProduct: 2,
       stateSortValue: 'newest',
       apiReviews: [],
       apiMeta: {},
@@ -34,7 +34,7 @@ class ReviewParent extends React.Component {
     });
     axios.get(`http://52.26.193.201:3000/reviews/${productID}/list`, {
       params: {
-        count: 20,
+        count: 30,
         sort: sortValue,
       },
     })
