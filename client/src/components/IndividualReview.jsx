@@ -10,7 +10,7 @@ const IndividualReview = ({
   moment.suppressDeprecationWarnings = true;
   const timestamp = moment(date).format('MMMM D, YYYY');
   return (
-    <div className="container border-bottom border-dark m-2 no-gutters">
+    <div className="border-bottom border-dark m-2 no-gutters h-auto w-auto">
       <div className="row justify-content-between no-gutters">
         <div className="col no-gutters">
           <div className="Stars" style={{ '--rating': `${rating}` }} />

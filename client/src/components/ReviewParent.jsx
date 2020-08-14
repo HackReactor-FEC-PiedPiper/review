@@ -34,7 +34,7 @@ class ReviewParent extends React.Component {
     });
     axios.get(`http://52.26.193.201:3000/reviews/${productID}/list`, {
       params: {
-        count: 20,
+        count: 30,
         sort: sortValue,
       },
     })
@@ -93,7 +93,7 @@ class ReviewParent extends React.Component {
         </div>
         <div className="container-fluid">
           <div className="row no-gutters">
-            <div className="col--4">
+            <div className="col--">
               {this.state.apiMetaAccessed
                 ? <RatingSummary metaData={this.state.apiMeta} />
                 : null}
