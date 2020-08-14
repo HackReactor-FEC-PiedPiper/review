@@ -93,7 +93,7 @@ class ReviewParent extends React.Component {
         </div>
         <div className="container-fluid">
           <div className="row no-gutters">
-            <div className="col--4">
+            <div className="col--">
               {this.state.apiMetaAccessed
                 ? <RatingSummary metaData={this.state.apiMeta} />
                 : null}

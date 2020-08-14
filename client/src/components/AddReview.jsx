@@ -341,11 +341,11 @@ class AddReview extends React.Component {
               <small className="form-text">Do you recommend this product?</small>
               <div className="form-check form-check-inline">
                 <input className="for-check-input" type="radio" name="recommendOption" id="recommendYes" value />
-                <label className="form-check-label" htmlFor="recommendYes">Yes</label>
+                <label className="form-check-label" htmlFor="recommendYes"> Yes</label>
               </div>
               <div className="form-check form-check-inline">
                 <input className="for-check-input" type="radio" name="recommendOption" id="recommendNo" value={false} />
-                <label className="form-check-label" htmlFor="recommendNo">No</label>
+                <label className="form-check-label" htmlFor="recommendNo"> No</label>
               </div>
             </div>
           </div>
@@ -358,18 +358,17 @@ class AddReview extends React.Component {
             </div>
             <div className="row">
               {this.props.characteristics
-                ? this.props.characteristics.map((type) =>
-                  // console.log('Inside forEach', type[0]);
-                  (
-                    <div className="col-4">
-                      <div className="row align-self-start">
-                        <div className="col">
+                ? this.props.characteristics.map((type) => (
+                  <div className="col-4 my-3 px-3">
+                    <div className="bg-light rounded">
+                      <div className="row">
+                        <div className="col text-center">
                           <small>{type[0]}</small>
                         </div>
                       </div>
                       <div className="row align-self-end">
                         <div className="col">
-                          <div className="form-group row justify-content-around" onChange={charChange[type[0]]}>
+                          <div className="form-group d-flex justify-content-around" onChange={charChange[type[0]]}>
                             <div className="form-check form-check-inline">
                               <input className="form-check-input" type="radio" name={`${type[0]}RatingOption`} id={`${type[0]}RatingOption1`} value={1} />
                               <label className="form-check-label" htmlFor={`${type[0]}RatingOption1`}>1</label>
@@ -441,7 +440,8 @@ class AddReview extends React.Component {
                                   )
                                   : null}
                     </div>
-                  ))
+                  </div>
+                ))
                 : "Hasn't loaded"}
             </div>
           </div>
@@ -454,7 +454,7 @@ class AddReview extends React.Component {
           {/* Review Body - textarea */}
           <div id="Body" className="form-group row">
             <div className="col">
-              <textarea className="form-control" rows="6" placeholder="Why did you like the product or not?" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
+              <textarea className="form-control" rows="4s" placeholder="Why did you like the product or not?" value={this.state.formBodyInput} onChange={this.onFormBodyChange.bind(this)} />
               <small>
                 {this.state.formBodyInput.length < 50
                   ? `(${50 - this.state.formBodyInput.length})`
