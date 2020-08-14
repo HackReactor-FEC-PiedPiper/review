@@ -66,7 +66,7 @@ describe('Review List should render each child component', () => {
   })
 
   test('Should have an area for Individual Reviews', () => {
-    expect(wrapper.find('.overflow-auto')).toBeTruthy();
+    expect(wrapper.find('#individualreviews')).toEqual({})
   })
 
   // If found, will return {}

@@ -76,7 +76,7 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{ height: 600 }}>
         <div className="row">
           <div id="totalreviews" className="h5 my-auto">
             {this.state.reviewListData.length}
@@ -101,20 +101,22 @@ class ReviewList extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row align-self-center mh-25 overflow-auto">
-          {this.state.currentList.map((review) => (
-            <IndividualReview
-              rating={review.rating}
-              name={review.reviewer_name}
-              date={review.date}
-              title={review.summary}
-              body={review.body}
-              help={review.helpfulness}
-              id={review.review_id}
-              response={review.response}
-              key={review.review_id}
-            />
-          ))}
+        <div id="individualreviews" className="row align-self-center mh-100 mw-100" style={{ overflow: 'scroll' }}>
+          <div className="mh-100 mw-100">
+            {this.state.currentList.map((review) => (
+              <IndividualReview
+                rating={review.rating}
+                name={review.reviewer_name}
+                date={review.date}
+                title={review.summary}
+                body={review.body}
+                help={review.helpfulness}
+                id={review.review_id}
+                response={review.response}
+                key={review.review_id}
+              />
+            ))}
+          </div>
         </div>
         <div id="buttons" className="row align-self-center">
           {(this.state.currentList.length < this.state.reviewListData.length)
