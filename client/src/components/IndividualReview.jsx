@@ -5,7 +5,7 @@ import './starRating.scss';
 import Helpfulness from './Helpfulness';
 
 const IndividualReview = ({
-  rating, name, date, title, body, help, id, response,
+  rating, name, date, title, body, help, id, response, photos,
 }) => {
   moment.suppressDeprecationWarnings = true;
   const timestamp = moment(date).format('MMMM D, YYYY');
@@ -26,6 +26,17 @@ const IndividualReview = ({
       <div className="col">
         <h5 id="title" className="">{title}</h5>
         <p id="body" className="h6 font-weight-light">{body}</p>
+      </div>
+      <div>
+        {photos.length > 0
+          ? (
+            <div className="col d-flex justify-content-around">
+              {photos.map((picture) => (
+                <img src={picture.url} alt="Can not be displayed" width="50" height="50" style={{ 'object-fit': 'cover' }} />
+              ))}
+            </div>
+          )
+          : null}
       </div>
       <div>
         {response !== 'null' && response

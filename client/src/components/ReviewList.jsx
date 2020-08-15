@@ -113,6 +113,7 @@ class ReviewList extends React.Component {
                 help={review.helpfulness}
                 id={review.review_id}
                 response={review.response}
+                photos={review.photos}
                 key={review.review_id}
               />
             ))}
