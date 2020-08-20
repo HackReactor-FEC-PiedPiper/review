@@ -89,7 +89,7 @@ class ReviewParent extends React.Component {
   render() {
     return (
       <div className="m-5">
-        <div id="title" className="h6 font-weight-light text-muted">
+        <div id="reviewtitle" className="h6 font-weight-light text-muted">
           RATINGS & REVIEWS
         </div>
         <div className="container-fluid">

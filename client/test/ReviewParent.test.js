@@ -19,7 +19,7 @@ describe('Review Parent should render successfully', () => {
   })
 
   test('Should render a title', () => {
-    expect(wrapper.find('#title').text()).toBe('RATINGS & REVIEWS')
+    expect(wrapper.find('#reviewtitle').text()).toBe('RATINGS & REVIEWS')
   });
 
   // If it find the component, will return {}
