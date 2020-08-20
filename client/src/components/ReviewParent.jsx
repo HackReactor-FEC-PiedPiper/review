@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import ReviewList from './ReviewList';
 import RatingSummary from './RatingSummary';
 
@@ -11,7 +12,7 @@ class ReviewParent extends React.Component {
     this.state = {
       apiDataAccessed: false,
       apiMetaAccessed: false,
-      currentProduct: 5,
+      currentProduct: this.props.match.params.productId,
       stateSortValue: 'newest',
       apiReviews: [],
       apiMeta: {},
