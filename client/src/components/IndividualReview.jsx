@@ -32,7 +32,7 @@ const IndividualReview = ({
           ? (
             <div className="col d-flex justify-content-around">
               {photos.map((picture) => (
-                <img src={picture.url} alt="Can not be displayed" width="50" height="50" style={{ 'object-fit': 'cover' }} />
+                <img src={picture.url} alt="Can not be displayed" width="50" height="50" style={{ objectFit: 'cover' }} />
               ))}
             </div>
           )

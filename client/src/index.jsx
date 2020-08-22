@@ -13,4 +13,4 @@ ReactDOM.render((
       <Redirect to="/5" />
     </Route>
   </Router>
-), document.getElementById('root'));
+), document.getElementById('ratingandreview'));
